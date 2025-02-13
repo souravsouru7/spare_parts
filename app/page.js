@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
@@ -84,6 +84,25 @@ const staggerAnimation = {
 }
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState('')
+  const [showScrollTop, setShowScrollTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
   return (
     <>
       <Navbar />
@@ -249,10 +268,76 @@ export default function Home() {
 
           {/* Bottom Gradient */}
           <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-transparent" />
+
+          {/* Contact Icons */}
+          <div className="fixed bottom-8 right-8 flex gap-4">
+            <motion.a
+              href="https://wa.me/+YOUR_PHONE_NUMBER" // Replace with your WhatsApp number
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/10 p-3 rounded-full backdrop-blur-sm hover:bg-white/20 transition-all"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 16 16">
+                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+              </svg>
+            </motion.a>
+
+            <motion.a
+              href="mailto:your.email@example.com" // Replace with your email
+              className="bg-white/10 p-3 rounded-full backdrop-blur-sm hover:bg-white/20 transition-all"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 16 16">
+                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+              </svg>
+            </motion.a>
+
+            <motion.a
+              href="tel:+YOUR_PHONE_NUMBER" // Replace with your phone number
+              className="bg-white/10 p-3 rounded-full backdrop-blur-sm hover:bg-white/20 transition-all"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 16 16">
+                <path fillRule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+              </svg>
+            </motion.a>
+          </div>
+
+          {/* Scroll to Top Button */}
+          <AnimatePresence>
+            {showScrollTop && (
+              <motion.button
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                onClick={scrollToTop}
+                className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white/10 p-3 rounded-full backdrop-blur-sm hover:bg-white/20 transition-all z-50"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="24" 
+                  height="24" 
+                  fill="white" 
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                </svg>
+              </motion.button>
+            )}
+          </AnimatePresence>
         </section>
 
         {/* Search Section */}
         <SearchSection />
+         {/* Brand Story Section */}
+         <BrandStory />
+
 
         {/* Categories Section */}
         <CategoriesSection />
@@ -263,9 +348,7 @@ export default function Home() {
         {/* Why Choose Us Section */}
         <WhyChooseUs />
 
-        {/* Brand Story Section */}
-        <BrandStory />
-
+       
         {/* CTA Section */}
         <CTASection />
       </main>
