@@ -272,7 +272,7 @@ export default function Home() {
           {/* Contact Icons */}
           <div className="fixed bottom-8 right-8 flex gap-4 z-50 md:flex-row flex-col">
             <motion.a
-              href="https://wa.me/+YOUR_PHONE_NUMBER" // Replace with your WhatsApp number
+              href="https://wa.me/+971504868799" // Replace with your WhatsApp number
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/10 p-3 rounded-full backdrop-blur-sm hover:bg-white/20 transition-all flex items-center gap-2 md:w-auto w-12 md:h-auto h-12 justify-center group"
@@ -286,7 +286,7 @@ export default function Home() {
             </motion.a>
 
             <motion.a
-              href="mailto:your.email@example.com" // Replace with your email
+              href="mailto:munavvir@dimark.ae" // Replace with your email
               className="bg-white/10 p-3 rounded-full backdrop-blur-sm hover:bg-white/20 transition-all flex items-center gap-2 md:w-auto w-12 md:h-auto h-12 justify-center group"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -298,7 +298,7 @@ export default function Home() {
             </motion.a>
 
             <motion.a
-              href="tel:+YOUR_PHONE_NUMBER" // Replace with your phone number
+              href="tel:+971504868799" // Replace with your phone number
               className="bg-white/10 p-3 rounded-full backdrop-blur-sm hover:bg-white/20 transition-all flex items-center gap-2 md:w-auto w-12 md:h-auto h-12 justify-center group"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
